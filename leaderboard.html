@@ -5,7 +5,7 @@
 <body>
 	<h1>Leaderboard</h1>
 	{{> leaderboard}}
-	
+	{{> loginButtons}}
 </body>
 
 <template name="leaderboard">
@@ -23,15 +23,18 @@
 		<h3>Selected Player: {{showSelectedPlayer.name}}</h3>
 	{{/if}}
 	{{> addPlayerForm}}<br>
-	<input type="button" class="remove" value="Remove Player">
+	
 </template>
 
 <template name="addPlayerForm">
-	<form>
-		<input type="text" name="playerName" placeholder="Name">
-		<input type="text" name="addScore" placeholder="Score">
-		<input type="submit" value="Add Player">
-	</form>
+	{{#if currentUser}}
+		<form>
+			<input type="text" name="playerName" placeholder="Name">
+			<input type="text" name="addScore" placeholder="Score">
+			<input type="submit" value="Add Player"><br><br>
+			<input type="button" class="remove" value="Remove Player">
+		</form>
+	{{/if}}
 </template>
 
 
