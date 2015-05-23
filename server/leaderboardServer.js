@@ -19,7 +19,9 @@ Meteor.methods({
   },
 
   'modifyPlayerScore': function(selectedPlayer, scoreValue){
+    var currentUserId = Meteor.userId();
+    console.log("you're modifying the score");
     PlayersList.update( {_id: selectedPlayer, createdBy: currentUserId},
-                        {$inc: {score: scoreValue} });
+                        {$inc: {score: scoreValue} } );
   }
 });

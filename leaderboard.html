@@ -3,36 +3,60 @@
 </head>
 
 <body>
-	<h1>Leaderboard</h1>
-	{{> leaderboard}}
-	{{> loginButtons}}
+	<div id="login">
+		{{> loginButtons}}
+	</div>
+	<div class="ui form segment" id="container">		
+		<div id="center">
+			<h1>Gin Rummy Scorekeeper</h1>
+			{{> leaderboard}}	
+		</div>
+	</div>
 </body>
 
 <template name="leaderboard">
-	<h2>Number of Players: {{count}}</h2>
-	<ul>
-		{{#each player}}
-			<li class="player {{selectedClass}}">{{name}}: {{score}}</li>
-		{{/each}}
-	</ul>
-	{{#if showSelectedPlayer}}
-		<input type="button" class="increment" value="Give 5 Points">
-		<input type="button" class="decrement" value="Take 5 Points">
+	<h3 id="numplayers">Players: {{count}}</h3>
+	{{#if currentUser}}
+		<h3 class="ui horizontal header divider">
+		Click on a player to select
+		</h3>
 	{{/if}}
+	<div class="players">
+		<ul>
+			{{#each player}}
+				<li class="player {{selectedClass}}">{{name}}: {{score}}</li>
+			{{/each}}
+		</ul>
+	</div>
 	{{#if showSelectedPlayer}}
+		<input type="button" class="increment" value="Give 10 Points">
+		<input type="button" class="decrement" value="Take 10 Points">
 		<h3>Selected Player: {{showSelectedPlayer.name}}</h3>
 	{{/if}}
-	{{> addPlayerForm}}<br>
+	{{#if currentUser}}
+		<h3 class="ui horizontal header divider">
+		Add or remove players
+		</h3>
+	{{/if}}
+	{{> addPlayerForm}}
 	
 </template>
 
 <template name="addPlayerForm">
 	{{#if currentUser}}
-		<form>
-			<input type="text" name="playerName" placeholder="Name">
-			<input type="text" name="addScore" placeholder="Score">
-			<input type="submit" value="Add Player"><br><br>
-			<input type="button" class="remove" value="Remove Player">
+		<form class="ui form">
+			<div class="three fields">
+				<div class="field">
+					<input type="text" name="playerName" placeholder="Name">
+				</div>
+				<div class="field">
+					<input type="text" name="addScore" placeholder="Score">
+				</div>
+				<div class="field button">
+					<input type="submit" value="Add Player">
+				</div>
+			</div>
+					<input type="button" class="remove" value="Remove Player">
 		</form>
 	{{/if}}
 </template>

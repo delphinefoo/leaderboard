@@ -28,24 +28,25 @@ Template.leaderboard.events({
   'click .player': function(){
     var playerId = this._id;
     Session.set('selectedPlayer', playerId);
-    console.log(playerId)
   },
+
   'click .increment': function(){
     var selectedPlayer = Session.get('selectedPlayer');
-    Meteor.call('modifyPlayerScore', selectedPlayer, 5);
+    Meteor.call('modifyPlayerScore', selectedPlayer, 10);
   },
+
   'click .decrement': function(){
     var selectedPlayer = Session.get('selectedPlayer');
-    Meteor.call('modifyPlayerScore', selectedPlayer, -5);      
+    Meteor.call('modifyPlayerScore', selectedPlayer, -10);
   },
+
   'submit form': function(event){
     event.preventDefault();
     var playerNameVar = event.target.playerName.value;
-    var playerScoreVar = +event.target.addScore.value
+    var playerScoreVar = event.target.addScore.value == '' ? 0 : parseInt(event.target.addScore.value);
+    Meteor.call('insertPlayerData', playerNameVar, playerScoreVar);
     event.target.playerName.value = '';
     event.target.addScore.value = '';
-    Meteor.call('insertPlayerData', playerNameVar, playerScoreVar);
-
   },
   'click .remove': function(){
     var selectedPlayer = Session.get('selectedPlayer');

@@ -2,3 +2,53 @@
 .selected {
 	background-color: #3CC;
 }
+
+.button {
+	height: 38px;
+	padding-top: 7px;
+}
+
+.player{
+	display: inline-block;
+}
+
+.players {
+	margin-bottom: 50px;
+}
+
+.three {
+	margin-bottom: 20px;
+}
+
+#center {
+	margin: auto;
+}
+
+#login {
+	float: left;
+	display: inline-block;
+	margin-left: 200px;
+}
+
+#numplayers {
+	text-align: center;
+	color: gray;
+	margin-bottom: 40px;
+}
+
+#container {
+	width: 600px;
+	margin: 100px auto;
+}
+
+ul {
+	list-style-type: none;
+	font-size: 24px;
+	width: 180px;
+	margin-left: 150px;
+}
+
+
+h1 {
+	text-align: center;
+}
